@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+forge "https://forgeapi.puppetlabs.com"
+
+mod 'stankevich-python', '1.9.0'
+
+mod 'puppetlabs-apache'
+
+mod 'puppetlabs-stdlib'
+
+# stahnma-epel is being manually included because stankevich-python 
+# doesn't depend on stahnma-epel but should
+# https://github.com/stankevich/puppet-python/issues/196
+mod 'stahnma-epel'
+
+mod 'gene1wood-credstash'
