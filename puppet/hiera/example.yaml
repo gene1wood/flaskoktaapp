@@ -3,3 +3,4 @@ flaskoktaapp::flask_secret_key: "%{::credstash_example_environment_flask_secret_
 flaskoktaapp::saml_url: "%{::credstash_example_environment_saml_url}"
 flaskoktaapp::tls_certificate: "%{::credstash_example_environment_tlscert}"
 flaskoktaapp::tls_certificate_key: "%{::credstash_example_environment_tlscertkey}"
+flaskoktaapp::app_name: "ExampleAppName"

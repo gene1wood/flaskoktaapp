@@ -13,4 +13,7 @@ mod 'puppetlabs-stdlib'
 # https://github.com/stankevich/puppet-python/issues/196
 mod 'stahnma-epel'
 
-mod 'gene1wood-credstash'
+# Uncomment credstash if you're using it
+# mod 'gene1wood-credstash'
+
+mod 'gene1wood-flaskoktaapp', :path => '/opt/src/puppet/modules/flaskoktaapp'

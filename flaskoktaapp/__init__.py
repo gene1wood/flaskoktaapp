@@ -8,6 +8,7 @@ import logging
 import os
 import uuid
 import yaml
+from flask import Response
 
 from flask import (
     Flask,
@@ -16,6 +17,7 @@ from flask import (
     request,
     session,
     url_for,
+    make_response,
 )
 
 # pip install flask-login
@@ -234,8 +236,9 @@ def main_page():
 @app.route("/example.json")
 @login_required
 def example_json():
-    return render_template('example.json')
-
+    response = make_response(render_template('example.json'))
+    response.mimetype = 'application/json'
+    return response
 
 @app.route("/user")
 @login_required

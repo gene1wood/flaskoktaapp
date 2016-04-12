@@ -160,11 +160,11 @@
                                 " - yum install -y puppet rubygems git\n",
                                 " - gem install librarian-puppet\n",
                                 " - mkdir -v -p /opt/puppet/hiera\n",
-                                " - echo # git clone https://github.com/gene1wood/flaskoktaapp.git /opt/src\n",
-                                " - echo # ln -v -s -f /opt/src/puppet/Puppetfile /opt/puppet/Puppetfile\n",
-                                " - echo # ln -v -s -f /opt/src/puppet/hiera.yaml /opt/puppet/hiera.yaml\n",
-                                " - echo # ln -v -s -f /opt/src/puppet/hiera/common.yaml /opt/puppet/hiera/common.yaml\n",
-                                " - echo # ln -v -s -f /opt/src/puppet/hiera/",
+                                " - git clone https://github.com/gene1wood/flaskoktaapp.git /opt/src\n",
+                                " - ln -v -s -f /opt/src/puppet/Puppetfile /opt/puppet/Puppetfile\n",
+                                " - ln -v -s -f /opt/src/puppet/hiera.yaml /opt/puppet/hiera.yaml\n",
+                                " - ln -v -s -f /opt/src/puppet/hiera/common.yaml /opt/puppet/hiera/common.yaml\n",
+                                " - ln -v -s -f /opt/src/puppet/hiera/",
                                 {
                                     "Ref":"Environment"
                                 },
@@ -173,15 +173,13 @@
                                     "Ref":"Environment"
                                 },
                                 ".yaml\n",
-                                " - echo # bash -c \"cd /opt/puppet && ",
-                                "HOME=/root librarian-puppet install\"\n",
+                                " - bash -c \"cd /opt/puppet && HOME=/root librarian-puppet install\"\n",
                                 " - echo # puppet apply --modulepath /opt/puppet/modules --execute \"include 'credstash'\"\n",
-                                " - echo # puppet apply --modulepath /opt/puppet/modules --hiera_config /opt/puppet/hiera.yaml ",
-                                "--environment ",
+                                " - puppet apply --modulepath /opt/puppet/modules --hiera_config /opt/puppet/hiera.yaml --environment ",
                                 {
                                     "Ref":"Environment"
                                 },
-                                " --execute \"include 'foo'\"\n"
+                                " --execute \"include 'flaskoktaapp'\"\n"
                             ]
                         ]
                     }

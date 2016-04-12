@@ -49,12 +49,19 @@ class flaskoktaapp (
     'openssl-devel',
     'libyaml-devel']: }
 
+  python::pip { 'flaskoktaapp' :
+    virtualenv    => $virtualenv_dir,
+    ensure        => '1.0.0',
+    url           => 'file:///opt/src',
+    notify        => Class['apache::service'],
+  }
+
   file { $wsgi_filename:
     content => template('flaskoktaapp/flaskoktaapp.wsgi.erb'),
     notify  => Class['apache::service'],
   }
 
-  file { '/etc/flaskoktaapp.yaml':
+  file { "/etc/${app_name}.yaml":
     content => template('flaskoktaapp/flaskoktaapp.yaml.erb'),
     notify  => Class['apache::service'],
   }

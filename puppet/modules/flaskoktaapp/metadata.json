@@ -17,6 +17,6 @@
   "dependencies": [
     { "name": "stankevich/python", "version_requirement": "1.9.x" },
     { "name": "stahnma/epel", "version_requirement": "1.x" },
-    { "name": "puppetlabs/apache", "version_requirement": "1.4.x" }
+    { "name": "puppetlabs/apache", "version_requirement": "1.8.x" }
   ]
 }

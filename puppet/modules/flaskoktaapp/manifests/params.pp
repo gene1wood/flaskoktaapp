@@ -23,7 +23,7 @@
 #
 class flaskoktaapp::params {
   $flask_secret_key = '11111111-1111-1111-1111-111111111111'
-  $idp_name = 'example'
+  $idp_name = 'okta'
   $install_dir = '/opt/flaskoktaapp'
   $saml_url = 'http://idp.oktadev.com/metadata'
   $tls_cert_filename = '/etc/pki/tls/certs/cert.crt'

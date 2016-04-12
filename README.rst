@@ -57,3 +57,56 @@ Here is an example configuration for two foreign AWS accounts
       acs_url_scheme: https
       loglevel: DEBUG
 
+
+Installation
+============
+
+Create a new "app" in okta
+
+- https://mozilla-admin.okta.com/admin/apps/active
+- Add Application : https://mozilla-admin.okta.com/admin/apps/add-app
+- Create New App
+   - SAML 2.0
+   - Create
+- App Name : YourAppNameGoesHere
+- Next
+- Single sign on URL : https://example.security.mozilla.com/saml/sso/okta
+- Audience URI (SP Entity ID) : https://example.security.mozilla.com/saml/sso/okta
+- Attribute Statements (Optional)
+
+  +-----------+-------------------+
+  | Name      | Value             |
+  +===========+===================+
+  | FirstName | ${user.firstName} |
+  +-----------+-------------------+
+  | LastName  | ${user.lastName}  |
+  +-----------+-------------------+
+  | Email     | ${user.email}     |
+  +-----------+-------------------+
+
+- Next
+- Are you a customer or partner? : I'm an Okta customer adding an internal app
+   - App type : Check "This is an internal app that we have created"
+   - Finish
+- In the "Settings" page, copy the URL of the link titled "Identity Provider metadata"
+- Paste the URL into either the /opt/puppet/hiera/ENVIRONMENT.yaml file as the `flaskoktaapp::saml_url` or into your credstash
+- Assign users to the app
+   - Click the "People" tab in the app screen in okta
+   - Click "Assign to People"
+   - Search for the user
+   - Click "Assign"
+   - Click "Save and go back"
+   - Click "Done"
+- If using credstash
+   - Add to the CloudFormation template an IAM role granting access to the dynamodb
+   - Create credstash stored secrets that are listed in `puppet/hiera/ENVIRONMENT.yaml`
+   - Create KMS grants so the instance can decrypt the credentials
+   - Enable installing puppet-credstash in the Puppetfile by uncommenting
+   - Enable installing credstash in the cloudformation template's cloud-config by uncommenting
+- If not
+   - Comment out the credstash puppetmodule in `/opt/puppet/Puppetfile`
+   - Add your secrets to `/opt/puppet/hiera/ENVIRONMENT.yaml`
+- Deploy a CloudFormation stack using the template
+- Create a DNS name pointing to the instance
+- Create Certs (optional)
+- Create EIP (optional)
